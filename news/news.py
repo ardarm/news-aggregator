@@ -1,3 +1,4 @@
+from django.conf import settings
 from newsapi import NewsApiClient
 
 
