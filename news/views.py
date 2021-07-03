@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
-from news import get_news
+from news.news import get_news
 
 
 # Create your views here.
