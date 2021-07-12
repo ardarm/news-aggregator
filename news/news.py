@@ -6,13 +6,14 @@ def get_news(search, page):
     newsapi = NewsApiClient(api_key=settings.APIKEY)
 
     if search is None or search == "top":
-        data = newsapi.get_top_headlines(country='us', page=1)
+        data = newsapi.get_top_headlines(country='us', page=page)
     else:
         data = newsapi.get_everything(q=search,
                                       sort_by="popularity",
                                       page=page)
 
     return data
+
 
 def get_context(data, search):
     REPLACEMENT_IMAGE = "https://www.matthewmurray.com.au/wp-content/uploads/2012/02/whyyoursmartphone.jpg"

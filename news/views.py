@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from news.news import get_news, get_context
 
 REPLACEMENT_IMAGE = "https://www.matthewmurray.com.au/wp-content/uploads/2012/02/whyyoursmartphone.jpg"
@@ -34,3 +34,14 @@ def search(request):
     context = get_context(data, keyword)
 
     return render(request, 'index.html', context=context)
+
+
+def load(request):
+    page = int(request.GET.get('page', 1))
+    search = request.GET.get('search', None)
+
+    data = get_news(search, page)
+
+    context = get_context(data, search)
+
+    return JsonResponse(context)
