@@ -13,3 +13,27 @@ def get_news(search, page):
                                       page=page)
 
     return data
+
+def get_context(data, search):
+    REPLACEMENT_IMAGE = "https://www.matthewmurray.com.au/wp-content/uploads/2012/02/whyyoursmartphone.jpg"
+
+    articles = data["articles"]
+
+    context = {"success": True, "data": [], "search": search}
+
+    for article in articles:
+        context["data"].append({
+            "title":
+            article["title"],
+            "description":
+            article["description"],
+            "url":
+            article["url"],
+            "image":
+            REPLACEMENT_IMAGE
+            if article["urlToImage"] is None else article["urlToImage"],
+            "publishedAt":
+            article["publishedAt"]
+        })
+
+    return context
