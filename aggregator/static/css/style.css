@@ -75,3 +75,9 @@ body {
     text-align: center;
     display: none;
 }
+
+.account {
+    position: absolute;
+    top: 8px;
+    right: 60px;
+}

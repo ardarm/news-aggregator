@@ -17,3 +17,15 @@
   <input class="form-control me-sm-2" type="text" name="keyword" placeholder="Search">
   <button class="btn btn-secondary my-2 my-sm-0" type="submit">Go</button>
 </form>
+
+<form class="account" method="POST">
+  {% block content %}
+  {% if user.is_authenticated %}
+    Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
+  {% else %}
+    <a href="{% url 'SignUp' %}">Sign Up</a>
+    <a href="{% url 'login' %}">&nbsp;&nbsp;Log In</a>
+  {% endif %}
+  {% endblock %}
+</form>
