@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 from news.news import get_news, get_context
 
 REPLACEMENT_IMAGE = "https://www.matthewmurray.com.au/wp-content/uploads/2012/02/whyyoursmartphone.jpg"
@@ -45,3 +48,8 @@ def load(request):
     context = get_context(data, search)
 
     return JsonResponse(context)
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'

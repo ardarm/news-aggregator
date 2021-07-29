@@ -54,6 +54,12 @@ body {
      height: 30px;
      width: 170px;
 }
+
+.account {
+     position: absolute;
+     top: 8px;
+     right: 60px;
+}
 </style>
 <body>
 
@@ -77,6 +83,18 @@ body {
   <button class="btn btn-secondary my-2 my-sm-0" type="submit">Go</button>
 </form>
 
+<form class="account" method="POST">
+    {% block content %}
+    {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+      <a href="{% url 'signup' %}">Sign Up</a>
+      <a href="{% url 'login' %}">&nbsp;&nbsp;Log In</a>
+    {% endif %}
+    {% endblock %}
+</form>
+  
 <script>
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
