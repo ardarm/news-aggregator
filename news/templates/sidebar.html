@@ -23,6 +23,7 @@
   {% if user.is_authenticated %}
     Hi {{ user.username }}!
     <p><a href="{% url 'logout' %}">Log Out</a></p>
+    <p><a href="{}">Favourites</a></p>
   {% else %}
     <a href="{% url 'SignUp' %}">Sign Up</a>
     <a href="{% url 'login' %}">&nbsp;&nbsp;Log In</a>

@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 from news.news import get_news, get_context
+from .models import Article
 
 REPLACEMENT_IMAGE = "https://www.matthewmurray.com.au/wp-content/uploads/2012/02/whyyoursmartphone.jpg"
 
@@ -54,3 +56,19 @@ class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+    
+
+@ login_required
+def show_favourites(request):
+    return render(request, 'favourites.html')
+
+
+@ login_required
+def user_favourite(request):
+    user = request.user
+    url = request.GET.get('url')    ## not sure if this is how to get the specific URL from the button position
+    checked = True if request.GET.get('checked') == "true" else False
+    article = Article.objects.get(user__username=user, url=url)
+    article.favorite = checked
+    article.save()
+    return JsonResponse({"status": "success"})
