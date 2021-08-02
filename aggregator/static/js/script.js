@@ -15,7 +15,7 @@ $(document).ready(function() {
         document.getElementsByClassName("text-muted")[i].innerText = d.toDateString();
     }
 
-    $(".bookmark").change(function () {
+    $(document).on("change", ".bookmark", function () {
       article = $(this).attr("articleurl");
       checked = $(this).attr("checked");
       $.ajax({

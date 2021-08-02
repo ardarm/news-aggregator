@@ -25,9 +25,9 @@
                         <p class="card-text"><small class="text-muted">{{value.publishedAt}}</small></p>
 
                         <p class="left">
-                        {% if request.user.is_authenticated %}
-                          <input class="bookmark" title="bookmark" type="checkbox" articleurl={{ value.url }} {% if value.url in user_favorites %} checked{% endif %}> Bookmark
-                        {% endif %}
+                          {% if request.user.is_authenticated %}
+                            <input class="bookmark" title="bookmark" type="checkbox" articleurl={{ value.url }} {% if value.url in user_favorites %} checked{% endif %}> Bookmark
+                          {% endif %}
                         </p>
                     </div>
                 </div>
@@ -69,6 +69,9 @@ window.addEventListener('scroll', function(e) {
                                             <h5 class="card-title"><a href="'+ articles[i]["url"] +'" target="_blanck">'+ articles[i]["title"] +'</a></h5>\
                                             <p class="card-text">'+ articles[i]["description"] +'</p>\
                                             <p class="card-text"><small class="text-muted">'+ articles[i]["publishedAt"] +'</small></p>\
+                                            <p class="left">\
+                                              <input class="bookmark" title="bookmark" type="checkbox" articleurl='+articles[i]["url"]+'> Bookmark\
+                                            </p>\
                                         </div>\
                                     </div>\
                                             \
