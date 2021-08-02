@@ -78,7 +78,6 @@ def show_favourites(request):
 def user_bookmark(request):
     user = request.user
     url = request.GET["article"]
-    breakpoint()
     checked = request.GET.get('checked', False)
     user_article, created = UserArticle.objects.get_or_create(
         user=user,
