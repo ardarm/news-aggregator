@@ -23,23 +23,12 @@
                         <h5 class="card-title"><a href="{{value.url}}" target="_blank">{{value.title}}</a></h5>
                         <p class="card-text">{{value.description}}</p>
                         <p class="card-text"><small class="text-muted">{{value.publishedAt}}</small></p>
+
+                        <p class="left">
                         {% if request.user.is_authenticated %}
-
-                        {% if favourite %}
-                        <div>
-                            <a href="{% url 'SignUp' %}" class="btn btn-outline-primary">Remove from Favourites</a>
-                        </div>
-                        {% else %}
-                        <div>
-                            <a href="{% url 'Favourite' %}" class="btn btn-outline-primary">Add to Favourites</a>
-                        </div>
+                          <input class="bookmark" title="bookmark" type="checkbox" articleurl={{ value.url }} {% if value.url in user_favorites %} checked{% endif %}> Bookmark
                         {% endif %}
-
-                        {% else %}
-                        <div>
-                            <a href="{% url 'SignUp' %}" class="btn btn-outline-primary">Add to Favourties</a>
-                        </div>
-                        {% endif %}
+                        </p>
                     </div>
                 </div>
 

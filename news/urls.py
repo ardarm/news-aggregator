@@ -7,6 +7,6 @@ urlpatterns = [
     path("search/", views.search, name="Search"),
     path('next', views.load, name="Next"),
     path('signup/', SignUpView.as_view(), name='SignUp'),
+    path('bookmark/', views.user_bookmark, name='user_bookmark'),
     path('showfav', views.show_favourites, name="ShowFav"),
-    path('favorite/', views.user_favourite, name='Favourite'),
 ]
