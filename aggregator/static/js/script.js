@@ -14,4 +14,16 @@ $(document).ready(function() {
         var d = new Date(t);
         document.getElementsByClassName("text-muted")[i].innerText = d.toDateString();
     }
+
+    $(document).on("change", ".bookmark", function () {
+      article = $(this).attr("articleurl");
+      checked = $(this).attr("checked");
+      $.ajax({
+        url: 'bookmark/',
+        data: {
+          'article': article,
+          'checked': checked
+        }
+      });
+    });
 });
