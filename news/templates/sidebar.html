@@ -1,62 +1,3 @@
-<!DOCTYPE html>
-<html>
-<style>
-body {
-    font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
-}
-
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-}
-
-.closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px !important;
-    margin-left: 50px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-.d-flex {
-     position: absolute;
-     top: 8px;
-     left: 60px;
-}
-
-.d-flex input {
-     height: 30px;
-     width: 170px;
-}
-</style>
-<body>
-
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
   <a href="{% url 'Home' %}?search=top">Top News</a>
@@ -66,7 +7,7 @@ body {
   <a href="{% url 'Home' %}?search=Politics">Politics</a>
   <a href="{% url 'Home' %}?search=Sports">Sports</a>
   <a href="{% url 'Home' %}?search=Business">Business</a>
-  <a href="{% url 'Home' %}?search=Technology">Technology</a>			
+  <a href="{% url 'Home' %}?search=Technology">Technology</a>
 </div>
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&nbsp;&nbsp;☰</span>
@@ -77,15 +18,15 @@ body {
   <button class="btn btn-secondary my-2 my-sm-0" type="submit">Go</button>
 </form>
 
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-     
-</body>
-</html> 
+<form class="account" method="POST">
+  {% block content %}
+  {% if user.is_authenticated %}
+    Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
+    <p><a href="{}">Favourites</a></p>
+  {% else %}
+    <a href="{% url 'SignUp' %}">Sign Up</a>
+    <a href="{% url 'login' %}">&nbsp;&nbsp;Log In</a>
+  {% endif %}
+  {% endblock %}
+</form>
